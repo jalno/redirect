@@ -1,0 +1,17 @@
+[
+	{
+		"path": ["userpanel", "settings", "redirects"],
+		"controller": "controllers\\addresses@search",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "add"],
+		"controller": "controllers\\addresses@add",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "add"],
+		"controller": "controllers\\addresses@store",
+		"method": "post"
+	}
+]

@@ -1,0 +1,12 @@
+{
+	"files":[
+		{
+			"classes":["views\\redirect\\address\\search"],
+			"file":"views/address/search.php"
+		},
+		{
+			"classes":["views\\redirect\\address\\add"],
+			"file":"views/address/add.php"
+		}
+	]
+}

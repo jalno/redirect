@@ -1,0 +1,39 @@
+{
+	"author": {
+		"name" : "Mahdi Abedi",
+		"website" : "https://github.com/abedi-ir"
+	},
+	"rtl": true,
+	"phrases":{
+		"redirect": "تغییر مسیر",
+		"redirects": "تغییر مسیرها",
+		"redirect.settings": "تنظیمات",
+		"error.redirect.address.notfound": "آدرسی یافت نشد ، به محض افزودن آدرس آن را در اینجا مشاهده خواهید کرد .",
+		"usertype.permissions.redirect_search": "لیست تغییر آدرس ها",
+		"usertype.permissions.redirect_add": "افزودن تغییر آدرس",
+		"usertype.permissions.redirect_edit": "ویرایش تغییر آدرس",
+		"usertype.permissions.redirect_delete": "حذف تغییر آدرس",
+		"redirect.address.id": "شناسه",
+		"redirect.address.source": "مبدأ",
+		"redirect.address.type": "نوع",
+		"redirect.address.status.permanent": "دائمی - 301",
+		"redirect.address.status.temporary": "موقتی - 302",
+		"redirect.address.destination": "مقصد",
+		"redirect.address.hits": "دفعات استفاده",
+		"redirect.address.status": "وضعیت",
+		"redirect.address.status.active": "فعال",
+		"redirect.address.status.deactive": "غیرفعال",
+		"redirect.search": "جستجو",
+		"redirect.address.keyword": "کلمه کلیدی",
+		"redirect.search.comparison": "نحوه مقایسه",
+		"redirect.address.edit": "ویرایش آدرس",
+		"redirect.address.delete": "حذف آدرس",
+		"redirect.address.add": "افزودن آدرس",
+		"redirect.search.choose": "تععین کنید ..",
+		"redirect.return": "بازگشت",
+		"redirect.cancel": "انصراف",
+		"redirect.update": "بروزرسانی",
+		"redirect.address.source.link": "لینک",
+		"redirect.address.source.regex": "متون با قاعده"
+	}
+}

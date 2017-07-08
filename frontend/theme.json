@@ -1,0 +1,32 @@
+{
+	"name" : "clipone",
+	"title":"Clip One",
+	"version" : "1.0.0",
+	"author" : {
+		"name" : "Mahdi Abedi",
+		"website" : "https://github.com/abedi-ir"
+	},
+	"autoload":"autoloader.json",
+	"languages":{
+		"fa_IR" : "langs/fa_IR.json"
+	},
+	"assets":[
+		{"type":"package", "name":"jquery"},
+		{"type":"package", "name":"jquery-ui"},
+		{"type":"package", "name":"bootstrap-inputmsg"},
+		{"type":"package", "name":"webuilder"},
+		{"type":"ts", "file":"assets/ts/Main.ts"}
+	],
+	"views":[
+		{
+			"name":"\\themes\\clipone\\views\\redirect\\address\\search",
+			"parent":"\\packages\\redirect\\views\\address\\search",
+			"file":"html/address/search.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\redirect\\address\\add",
+			"parent":"\\packages\\redirect\\views\\address\\add",
+			"file":"html/address/add.php"
+		}
+	]
+}
