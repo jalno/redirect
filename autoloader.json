@@ -50,6 +50,14 @@
 		{
 			"classes":["views\\address\\add"],
 			"file":"views/address/add.php"
+		},
+		{
+			"classes":["views\\address\\edit"],
+			"file":"views/address/edit.php"
+		},
+		{
+			"classes":["views\\address\\delete"],
+			"file":"views/address/delete.php"
 		}
 	]
 }

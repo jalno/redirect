@@ -5,10 +5,10 @@ $this->the_header();
 ?>
 <div class="row">
 	<div class="col-xs-12">
-		<form class="redirect-address-add" action="<?php echo userpanel\url("settings/redirects/add"); ?>" method="post">
+		<form class="redirect-address-edit" action="<?php echo userpanel\url("settings/redirects/edit/".$this->address->id); ?>" method="post">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-plus"></i> <?php echo translator::trans("redirect.address.add"); ?>
+					<i class="fa fa-edit"></i> <?php echo translator::trans("redirect.address.edit"); ?>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -58,7 +58,7 @@ $this->the_header();
 									<a href="<?php echo userpanel\url('settings/redirects'); ?>" class="btn btn-default"><i class="fa fa-chevron-circle-right"></i> <?php echo translator::trans("redirect.return"); ?></a>
 								</div>
 								<div class="btn-group">
-									<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <?php echo translator::trans("redirect.add"); ?></button>
+									<button type="submit" class="btn btn-teal"><i class="fa fa-check-square-o"></i> <?php echo translator::trans("redirect.update"); ?></button>
 								</div>
 							</div>
 						</div>

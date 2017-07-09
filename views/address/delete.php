@@ -2,7 +2,7 @@
 namespace packages\redirect\views\address;
 use \packages\redirect\address;
 use \packages\redirect\views\form;
-class edit extends form{
+class delete extends form{
 	public function setAddress(address $address){
 		$this->setData($address, 'address');
 		$this->setDataForm($address->toArray());

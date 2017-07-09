@@ -34,6 +34,10 @@
 		"redirect.cancel": "انصراف",
 		"redirect.update": "بروزرسانی",
 		"redirect.address.source.link": "لینک",
-		"redirect.address.source.regex": "متون با قاعده"
+		"redirect.address.source.regex": "متون با قاعده",
+		"redirect.add": "افزودن",
+		"redirect.attention": "توجه",
+		"redirect.address.delete.warning": "آیا از حذف تغییر آدرس به شناسه {address_id} اطمینان دارید ؟ این عملیات بدون بازگشت است .",
+		"redirect.delete": "حذف"
 	}
 }

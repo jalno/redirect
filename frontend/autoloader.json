@@ -7,6 +7,14 @@
 		{
 			"classes":["views\\redirect\\address\\add"],
 			"file":"views/address/add.php"
+		},
+		{
+			"classes":["views\\redirect\\address\\edit"],
+			"file":"views/address/edit.php"
+		},
+		{
+			"classes":["views\\redirect\\address\\delete"],
+			"file":"views/address/delete.php"
 		}
 	]
 }

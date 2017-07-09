@@ -40,8 +40,8 @@ $this->the_header();
 						<tbody>
 							<?php
 							foreach($this->getAddressLists() as $address){
-								$this->setButtonParam('edit', 'link', userpanel\url("redirects/edit/".$address->id));
-								$this->setButtonParam('delete', 'link', userpanel\url("redirects/delete/".$address->id));
+								$this->setButtonParam('edit', 'link', userpanel\url("settings/redirects/edit/".$address->id));
+								$this->setButtonParam('delete', 'link', userpanel\url("settings/redirects/delete/".$address->id));
 								$statusClass = utility::switchcase($address->status, [
 									'label label-success' => address::active,
 									'label label-danger' => address::deactive
@@ -102,7 +102,7 @@ $this->the_header();
 						[
 							'name' => 'type',
 							'type' => 'select',
-							'label' => translator::trans("redirect.address.status"),
+							'label' => translator::trans("redirect.address.type"),
 							'options' => $this->getTypeForSelect()
 						],
 						[

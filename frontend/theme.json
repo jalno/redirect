@@ -27,6 +27,16 @@
 			"name":"\\themes\\clipone\\views\\redirect\\address\\add",
 			"parent":"\\packages\\redirect\\views\\address\\add",
 			"file":"html/address/add.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\redirect\\address\\edit",
+			"parent":"\\packages\\redirect\\views\\address\\edit",
+			"file":"html/address/edit.php"
+		},
+		{
+			"name":"\\themes\\clipone\\views\\redirect\\address\\delete",
+			"parent":"\\packages\\redirect\\views\\address\\delete",
+			"file":"html/address/delete.php"
 		}
 	]
 }

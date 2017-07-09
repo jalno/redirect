@@ -13,5 +13,25 @@
 		"path": ["userpanel", "settings", "redirects", "add"],
 		"controller": "controllers\\addresses@store",
 		"method": "post"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "edit", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\addresses@edit",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "edit", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\addresses@update",
+		"method": "post"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "delete", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\addresses@delete",
+		"method": "get"
+	},
+	{
+		"path": ["userpanel", "settings", "redirects", "delete", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
+		"controller": "controllers\\addresses@terminate",
+		"method": "post"
 	}
 ]
