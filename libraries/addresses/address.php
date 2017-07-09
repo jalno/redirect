@@ -14,4 +14,7 @@ class address extends dbObject{
         'destination' => ['type' => 'text', 'required' => true],
 		'status' => ['type' => 'int', 'required' => true]
 	];
+	public function isRegex():bool{
+		return preg_match('/^\\/.+\\/i?$/', $this->source);
+	}
 }

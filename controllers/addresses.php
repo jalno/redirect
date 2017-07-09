@@ -110,7 +110,6 @@ class addresses extends controller{
 		$view = view::byName("\\packages\\redirect\\views\\address\\add");
 		$inputsRules = [
 			'source' => [
-				'type' => 'string'
 			],
 			'regexr' => [
 				'type' => 'bool',
@@ -135,7 +134,7 @@ class addresses extends controller{
 				throw new duplicateRecord('source');
 			}
 			if($inputs['regexr']){
-				if(!preg_match('/^\\/.+\\/\\i$/', $inputs['source'])){
+				if(!preg_match('/^\\/.+\\/i?$/', $inputs['source'])){
 					throw new inputValidation('source');
 				}
 				if(!@preg_match($inputs['source'], null)){
@@ -172,7 +171,7 @@ class addresses extends controller{
 		}
 		$view = view::byName("\\packages\\redirect\\views\\address\\edit");
 		$view->setAddress($address);
-		$view->setDataForm((@preg_match($address->source, null) !== false), 'regexr');
+		$view->setDataForm($address->isRegex(), 'regexr');
 		$this->response->setStatus(true);
 		$this->response->setView($view);
 		return $this->response;
@@ -186,7 +185,6 @@ class addresses extends controller{
 		$view->setAddress($address);
 		$inputsRules = [
 			'source' => [
-				//'type' => 'string',
 				'optional' => true
 			],
 			'regexr' => [
@@ -223,7 +221,7 @@ class addresses extends controller{
 			}
 			if(isset($inputs['regexr'], $inputs['source'])){
 				if($inputs['regexr']){
-					if(!preg_match('/^\\/.+\\/\\i$/', $inputs['source'])){
+					if(!preg_match('/^\\/.+\\/i?$/', $inputs['source'])){
 						throw new inputValidation('source');
 					}
 					if(@preg_match($inputs['source'], null) === false){
@@ -252,6 +250,7 @@ class addresses extends controller{
 			$address->save();
 			$this->response->setStatus(true);
 		}catch(inputValidation $error){
+			print_r($error);
 			$view->setFormError(FormError::fromException($error));
 		}catch(duplicateRecord $error){
 			$view->setFormError(FormError::fromException($error));

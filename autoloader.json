@@ -58,6 +58,10 @@
 		{
 			"classes":["views\\address\\delete"],
 			"file":"views/address/delete.php"
+		},
+		{
+			"classes":["controllers\\redirect"],
+			"file":"controllers/redirect.php"
 		}
 	]
 }

@@ -8,24 +8,21 @@ export default class Edit{
 	private static runSourceTypeListener(){
 		$('.changeSourceType', Edit.$form).on('click', function(e){
 			e.preventDefault();
-			if(Edit.firstFlag || $('.sourceType', Edit.$form).data('type') == $(this).data('type')){
-				Edit.firstFlag = true;
-				const source:JQuery = $('input[name=source]', Edit.$form);
-				const html:string = $(this).html() + ' <span class="caret"></span>';
-				$('.sourceType', Edit.$form).html(html);
-				if($(this).data('type') == 'regex'){
-					source.attr('pattern', '^/.+/i$');
-					source.attr('placeholder', '/some pattern/i');
-					$('input[name=regexr]', Edit.$form).val(true);
-				}else{
-					source.attr('pattern', '^https?://.+$');
-					source.attr('placeholder', 'http(s)://source-address.sth');
-					source.attr('title', 'http(s)://source-address.sth');
-					$('input[name=regexr]', Edit.$form).val(false);
-				}
+			$('input[name=regexr]', Edit.$form).val($(this).data('type') == 'regex' ? 1 : 0).trigger('change');
+		});
+		$('input[name=regexr]', Edit.$form).on('change', function(){
+			const isRegex:boolean = parseInt($(this).val()) > 0;
+			const html:string = $('.changeSourceType[data-type='+(isRegex ? 'regex' : 'link')+']').html() + '<span class="caret"></span>';
+			$('.sourceType', Edit.$form).html(html);
+			const source:JQuery = $('input[name=source]', Edit.$form);
+			if(isRegex){
+				source.attr('pattern', '^/.+/i?$');
+				source.attr('placeholder', '/some pattern/(i)');
+			}else{
+				source.attr('pattern', '^https?://.+$');
+				source.attr('placeholder', 'http(s)://source-address.com');
 			}
-			
-		}).trigger('click');
+		}).trigger('change');
 	}
 	private static runFormSubmitListener(){
 		Edit.$form.on('submit', function(e){
