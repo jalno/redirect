@@ -12,6 +12,7 @@ class address extends dbObject{
         'source' => ['type' => 'text', 'required' => true],
         'type' => ['type' => 'int', 'required' => true],
         'destination' => ['type' => 'text', 'required' => true],
+        'hits' => ['type' => 'int',],
 		'status' => ['type' => 'int', 'required' => true]
 	];
 	public function isRegex():bool{
