@@ -33,7 +33,7 @@ class search extends redirectList{
 				[
 					'type' => 'btn-success',
 					'txt' => translator::trans('redirect.address.add'),
-					'link' => userpanel\url('redirects/add')
+					'link' => userpanel\url('settings/redirects/add')
 				]
 			], 'btns');
 		}
