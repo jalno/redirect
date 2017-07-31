@@ -137,7 +137,7 @@ class addresses extends controller{
 				if(!preg_match('/^\\/.+\\/i?$/', $inputs['source'])){
 					throw new inputValidation('source');
 				}
-				if(!@preg_match($inputs['source'], null)){
+				if(!@preg_match($inputs['source'], null) === false){
 					throw new inputValidation('source');
 				}
 			}else{
@@ -250,7 +250,6 @@ class addresses extends controller{
 			$address->save();
 			$this->response->setStatus(true);
 		}catch(inputValidation $error){
-			print_r($error);
 			$view->setFormError(FormError::fromException($error));
 		}catch(duplicateRecord $error){
 			$view->setFormError(FormError::fromException($error));
