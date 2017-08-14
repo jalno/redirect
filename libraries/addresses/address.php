@@ -18,4 +18,8 @@ class address extends dbObject{
 	public function isRegex():bool{
 		return preg_match('/^\\/.+\\/i?$/', $this->source);
 	}
+	public function hit(){
+		$this->hits++;
+		return $this->save();
+	}
 }

@@ -14,13 +14,22 @@ class redirect extends controller{
 		$address = new address();
 		$address->where('status', address::active);
 		foreach($address->get() as $address){
-			if(($address->isRegex() and preg_match($address->source, $uri)) or $address->source == $uri){
+			if($address->isRegex() and $destination = preg_replace($address->source, $address->destination, $uri)){
+				$address->hit();
+				$this->response->setHttpCode($address->type);
+				$this->response->Go($destination);
+			}elseif($address->source == $uri){
+				$address->hit();
+				$this->response->setHttpCode($address->type);
+				$this->response->Go($address->destination);
+			}
+			/*if(($address->isRegex() and preg_match($address->source, $uri)) or $address->source == $uri){
 				$address->hits++;
 				$address->save();
 				$this->response->setHttpCode($address->type);
 				$this->response->Go($address->destination);
 				break;
-			}
+			}*/
 		}
 		return $this->response;
 	}

@@ -53,7 +53,14 @@ $this->the_header();
 							?>
 							<tr>
 								<td class="center"><?php echo $address->id; ?></td>
-								<td class="ltr"><a href="<?php echo $address->source; ?>" target="_blank"><?php echo $address->source; ?></a></td>
+								<td class="ltr">
+								<?php
+								if($address->isRegex()){
+									echo $address->source;
+								}else{ ?>
+									<a href="<?php echo $address->source; ?>" target="_blank"><?php echo $address->source; ?></a>
+								<?php } ?>
+								</td>
 								<td><?php echo $address->type; ?></td>
 								<td class="ltr"><a href="<?php echo $address->destination; ?>" target="_blank"><?php echo $address->destination; ?></a></td>
 								<td class="center"><span class="badge"><?php echo $address->hits; ?></span></td>
