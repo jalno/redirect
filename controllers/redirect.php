@@ -23,13 +23,6 @@ class redirect extends controller{
 				$this->response->setHttpCode($address->type);
 				$this->response->Go($address->destination);
 			}
-			/*if(($address->isRegex() and preg_match($address->source, $uri)) or $address->source == $uri){
-				$address->hits++;
-				$address->save();
-				$this->response->setHttpCode($address->type);
-				$this->response->Go($address->destination);
-				break;
-			}*/
 		}
 		return $this->response;
 	}
