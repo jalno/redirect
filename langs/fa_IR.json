@@ -5,6 +5,10 @@
 	},
 	"rtl": true,
 	"phrases":{
-		
+		"usertype.permissions.redirect": "تغییر آدرس",
+		"usertype.permissions.redirect_search": "لیست تغییر آدرس ها",
+		"usertype.permissions.redirect_add": "افزودن تغییر آدرس",
+		"usertype.permissions.redirect_edit": "ویرایش تغییر آدرس",
+		"usertype.permissions.redirect_delete": "حذف تغییر آدرس"
 	}
 }

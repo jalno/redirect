@@ -1,0 +1,14 @@
+{
+	"author": {
+		"name" : "Hossein Hosni",
+		"website" : "https://github.com/hosni"
+	},
+	"rtl": false,
+	"phrases":{
+		"usertype.permissions.redirect": "Redirect",
+		"usertype.permissions.redirect_search": "Redirects List",
+		"usertype.permissions.redirect_add": "Add Redirect",
+		"usertype.permissions.redirect_edit": "Edit Redirect",
+		"usertype.permissions.redirect_delete": "Delete Redirect"
+	}
+}
