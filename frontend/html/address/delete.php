@@ -1,6 +1,7 @@
 <?php
-use \packages\base\Translator;
-use \packages\userpanel;
+use packages\base\Translator;
+use packages\userpanel;
+
 $this->the_header();
 ?>
 <div class="row">
@@ -9,11 +10,11 @@ $this->the_header();
 			<div class="alert alert-block alert-warning fade in">
 				<h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i> <?php echo Translator::trans('redirect.attention'); ?>!</h4>
 				<p>
-					<?php echo Translator::trans("redirect.address.delete.warning", array('address_id' => $this->address->id)); ?>
+					<?php echo Translator::trans('redirect.address.delete.warning', ['address_id' => $this->address->id]); ?>
 				</p>
 				<p>
 					<a href="<?php echo userpanel\url('settings/redirects/view/'.$this->address->id); ?>" class="btn btn-light-grey"><i class="fa fa-chevron-circle-right"></i> <?php echo Translator::trans('redirect.return'); ?></a>
-					<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> <?php echo Translator::trans("redirect.delete") ?></button>
+					<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i> <?php echo Translator::trans('redirect.delete'); ?></button>
 				</p>
 			</div>
 		</form>
