@@ -1,7 +1,7 @@
 <?php
 namespace packages\redirect;
-use \packages\base\db\dbObject;
-class address extends dbObject{
+use \packages\base\DB\DBObject;
+class Address extends DBObject{
 	const active = 1;
 	const deactive = 2;
 	const permanent = 301;

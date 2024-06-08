@@ -1,24 +1,25 @@
 <?php
-namespace packages\redirect\controllers;
-use \packages\base\db;
-use \packages\base\http;
+namespace packages\redirect\Controllers;
+use \packages\base\DB;
+use \packages\base\HTTP;
 use \packages\base\NotFound;
-use \packages\base\view\error;
-use \packages\base\db\parenthesis;
-use \packages\base\views\FormError;
-use \packages\base\inputValidation;
-use \packages\base\db\duplicateRecord;
+use \packages\base\View\Error;
+use \packages\base\DB\Parenthesis;
+use \packages\base\Views\FormError;
+use \packages\base\InputValidation;
+use \packages\base\DB\DuplicateRecord;
 use \packages\userpanel;
-use \packages\redirect\view;
-use \packages\redirect\address;
-use \packages\redirect\controller;
-use \packages\redirect\authorization;
-class addresses extends controller{
+use \packages\redirect\View;
+use \packages\redirect\Address;
+use \packages\redirect\Views\Address as AddressView;
+use \packages\redirect\Controller;
+use \packages\redirect\Authorization;
+class Addresses extends Controller{
 	protected $authentication = true;
 	public function search(){
-		authorization::haveOrFail('search');
-		$view = view::byName("\\packages\\redirect\\views\\address\\search");
-		$address = new address();
+		Authorization::haveOrFail('search');
+		$view = View::byName(AddressView\Search::class);
+		$address = new Address();
 		$inputsRules = [
 			'id' => [
 				'type' => 'number',
@@ -40,8 +41,8 @@ class addresses extends controller{
 				'optional' => true,
 				'empty' => true,
 				'values' => [
-					address::permanent,
-					address::temporary,
+					Address::permanent,
+					Address::temporary,
 				]
 			],
 			'status' => [
@@ -49,8 +50,8 @@ class addresses extends controller{
 				'optional' => true,
 				'empty' => true,
 				'values' => [
-					address::active,
-					address::deactive,
+					Address::active,
+					Address::deactive,
 				]
 			],
 			'word' => [
@@ -77,7 +78,7 @@ class addresses extends controller{
 				}
 			}
 			if(isset($inputs['word']) and $inputs['word']){
-				$parenthesis = new parenthesis();
+				$parenthesis = new Parenthesis();
 				foreach(['source', 'destination'] as $item){
 					if(!isset($inputs[$item]) or !$inputs[$item]){
 						$parenthesis->where($item, $inputs['word'], $inputs['comparison'], 'OR');
@@ -85,29 +86,29 @@ class addresses extends controller{
 				}
 				$address->where($parenthesis);
 			}
-		}catch(inputValidation $error){
+		}catch(InputValidation $error){
 			$view->setFormError(FormError::fromException($error));
 			$this->response->setStatus(false);
 		}
 		$address->pageLimit = $this->items_per_page;
 		$addresses = $address->paginate($this->page, 'redirect_addresses.*');
 		$view->setDataList($addresses);
-		$view->setPaginate($this->page, db::totalCount(), $this->items_per_page);
+		$view->setPaginate($this->page, DB::totalCount(), $this->items_per_page);
 		$this->response->setStatus(true);
 		$this->response->setView($view);
 		return $this->response;
 	}
 	public function add(){
-		authorization::haveOrFail('add');
-		$view = view::byName("\\packages\\redirect\\views\\address\\add");
+		Authorization::haveOrFail('add');
+		$view = View::byName(AddressView\Add::class);
 		$view->setDataForm(false, 'regexr');
 		$this->response->setStatus(true);
 		$this->response->setView($view);
 		return $this->response;
 	}
 	public function store(){
-		authorization::haveOrFail('add');
-		$view = view::byName("\\packages\\redirect\\views\\address\\add");
+		Authorization::haveOrFail('add');
+		$view = View::byName(AddressView\Add::class);
 		$inputsRules = [
 			'source' => [
 			],
@@ -117,47 +118,47 @@ class addresses extends controller{
 			],
 			'type' => [
 				'type' => 'number',
-				'values' => [address::permanent, address::temporary]
+				'values' => [Address::permanent, Address::temporary]
 			],
 			'destination' => [
 				'type' => 'string'
 			],
 			'status' => [
 				'type' => 'number',
-				'values' => [address::active, address::deactive]
+				'values' => [Address::active, Address::deactive]
 			],
 		];
 		try{
 			$this->response->setStatus(false);
 			$inputs = $this->checkinputs($inputsRules);
-			if(address::where('source', $inputs['source'])->has()){
-				throw new duplicateRecord('source');
+			if(Address::where('source', $inputs['source'])->has()){
+				throw new DuplicateRecord('source');
 			}
 			if($inputs['regexr']){
 				if(!preg_match('/^\\/.+\\/i?$/', $inputs['source'])){
-					throw new inputValidation('source');
+					throw new InputValidation('source');
 				}
 				if(!@preg_match($inputs['source'], null) === false){
-					throw new inputValidation('source');
+					throw new InputValidation('source');
 				}
 			}else{
 				if(substr($inputs['source'], 0, 4) != 'http'){
-					throw new inputValidation('source');
+					throw new InputValidation('source');
 				}
 			}
 			if(substr($inputs['destination'], 0, 4) != 'http'){
-				throw new inputValidation('destination');
+				throw new InputValidation('destination');
 			}
-			$address = new address();
+			$address = new Address();
 			foreach(['source', 'type', 'destination', 'status'] as $item){
 				$address->$item = $inputs[$item];
 			}
 			$address->save();
 			$this->response->setStatus(true);
 			$this->response->Go(userpanel\url('settings/redirects/edit/'.$address->id));
-		}catch(inputValidation $error){
+		}catch(InputValidation $error){
 			$view->setFormError(FormError::fromException($error));
-		}catch(duplicateRecord $error){
+		}catch(DuplicateRecord $error){
 			$view->setFormError(FormError::fromException($error));
 		}
 		$view->setDataForm($this->inputsvalue($inputsRules));
@@ -165,11 +166,11 @@ class addresses extends controller{
 		return $this->response;
 	}
 	public function edit(array $data){
-		authorization::haveOrFail('edit');
-		if(!$address = address::byId($data['address'])){
+		Authorization::haveOrFail('edit');
+		if(!$address = Address::byId($data['address'])){
 			throw new NotFound();
 		}
-		$view = view::byName("\\packages\\redirect\\views\\address\\edit");
+		$view = View::byName(AddressView\Edit::class);
 		$view->setAddress($address);
 		$view->setDataForm($address->isRegex(), 'regexr');
 		$this->response->setStatus(true);
@@ -177,11 +178,11 @@ class addresses extends controller{
 		return $this->response;
 	}
 	public function update(array $data){
-		authorization::haveOrFail('edit');
-		if(!$address = address::byId($data['address'])){
+		Authorization::haveOrFail('edit');
+		if(!$address = Address::byId($data['address'])){
 			throw new NotFound();
 		}
-		$view = view::byName("\\packages\\redirect\\views\\address\\edit");
+		$view = View::byName(AddressView\Edit::class);
 		$view->setAddress($address);
 		$inputsRules = [
 			'source' => [
@@ -194,7 +195,7 @@ class addresses extends controller{
 			],
 			'type' => [
 				'type' => 'number',
-				'values' => [address::permanent, address::temporary],
+				'values' => [Address::permanent, Address::temporary],
 				'optional' => true
 			],
 			'destination' => [
@@ -203,7 +204,7 @@ class addresses extends controller{
 			],
 			'status' => [
 				'type' => 'number',
-				'values' => [address::active, address::deactive],
+				'values' => [Address::active, Address::deactive],
 				'optional' => true
 			],
 		];
@@ -212,8 +213,8 @@ class addresses extends controller{
 			$inputs = $this->checkinputs($inputsRules);
 			if(isset($inputs['source'])){
 				if($inputs['source']){
-					if(address::where('source', $inputs['source'])->where('id', $address->id, '!=')->has()){
-						throw new duplicateRecord('source');
+					if(Address::where('source', $inputs['source'])->where('id', $address->id, '!=')->has()){
+						throw new DuplicateRecord('source');
 					}
 				}else{
 					unset($inputs['source']);
@@ -222,21 +223,21 @@ class addresses extends controller{
 			if(isset($inputs['regexr'], $inputs['source'])){
 				if($inputs['regexr']){
 					if(!preg_match('/^\\/.+\\/i?$/', $inputs['source'])){
-						throw new inputValidation('source');
+						throw new InputValidation('source');
 					}
 					if(@preg_match($inputs['source'], null) === false){
-						throw new inputValidation('source');
+						throw new InputValidation('source');
 					}
 				}else{
 					if(substr($inputs['source'], 0, 4) != 'http'){
-						throw new inputValidation('source');
+						throw new InputValidation('source');
 					}
 				}
 			}
 			if(isset($inputs['destination'])){
 				if($inputs['destination']){
 					if(substr($inputs['destination'], 0, 4) != 'http'){
-						throw new inputValidation('destination');
+						throw new InputValidation('destination');
 					}
 				}else{
 					unset($inputs['destination']);
@@ -249,9 +250,9 @@ class addresses extends controller{
 			}
 			$address->save();
 			$this->response->setStatus(true);
-		}catch(inputValidation $error){
+		}catch(InputValidation $error){
 			$view->setFormError(FormError::fromException($error));
-		}catch(duplicateRecord $error){
+		}catch(DuplicateRecord $error){
 			$view->setFormError(FormError::fromException($error));
 		}
 		$view->setDataForm($this->inputsvalue($inputsRules));
@@ -259,22 +260,22 @@ class addresses extends controller{
 		return $this->response;
 	}
 	public function delete(array $data){
-		authorization::haveOrFail('delete');
-		if(!$address = address::byId($data['address'])){
+		Authorization::haveOrFail('delete');
+		if(!$address = Address::byId($data['address'])){
 			throw new NotFound();
 		}
-		$view = view::byName("\\packages\\redirect\\views\\address\\delete");
+		$view = View::byName(AddressView\Delete::class);
 		$view->setAddress($address);
 		$this->response->setStatus(true);
 		$this->response->setView($view);
 		return $this->response;
 	}
 	public function terminate(array $data){
-		authorization::haveOrFail('delete');
-		if(!$address = address::byId($data['address'])){
+		Authorization::haveOrFail('delete');
+		if(!$address = Address::byId($data['address'])){
 			throw new NotFound();
 		}
-		$view = view::byName("\\packages\\redirect\\views\\address\\delete");
+		$view = View::byName(AddressView\Delete::class);
 		$address->delete();
 		$this->response->setStatus(true);
 		$this->response->Go(userpanel\url('settings/redirects'));

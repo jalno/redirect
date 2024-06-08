@@ -1,5 +1,5 @@
 <?php
-use \packages\base\translator;
+use \packages\base\Translator;
 use \packages\userpanel;
 $this->the_header();
 ?>
@@ -8,7 +8,7 @@ $this->the_header();
 		<form class="redirect-address-add" action="<?php echo userpanel\url("settings/redirects/add"); ?>" method="post">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-plus"></i> <?php echo translator::trans("redirect.address.add"); ?>
+					<i class="fa fa-plus"></i> <?php echo Translator::trans("redirect.address.add"); ?>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-link panel-collapse collapses" href="#"></a>
 					</div>
@@ -23,14 +23,14 @@ $this->the_header();
 						]);
 						$this->createField([
 							'name' => 'source',
-							'label' => translator::trans('redirect.address.source'),
+							'label' => Translator::trans('redirect.address.source'),
 							'ltr' => true,
 							'input-group' => $this->getSourceInputGroup()
 						]);
 						$this->createField([
 							'type' => 'select',
 							'name' => 'status',
-							'label' => translator::trans('redirect.address.status'),
+							'label' => Translator::trans('redirect.address.status'),
 							'options' => $this->getStatusForSelect()
 						]);
 						?>
@@ -39,13 +39,13 @@ $this->the_header();
 						<?php
 						$this->createField([
 							'name' => 'destination',
-							'label' => translator::trans('redirect.address.destination'),
+							'label' => Translator::trans('redirect.address.destination'),
 							'ltr' => true
 						]);
 						$this->createField([
 							'type' => 'select',
 							'name' => 'type',
-							'label' => translator::trans('redirect.address.type'),
+							'label' => Translator::trans('redirect.address.type'),
 							'options' => $this->getTypeForSelect()
 						]);
 						?>
@@ -55,10 +55,10 @@ $this->the_header();
 						<div class="col-sm-3 pull-left">
 							<div class="btn-group btn-group-justified">
 								<div class="btn-group">
-									<a href="<?php echo userpanel\url('settings/redirects'); ?>" class="btn btn-default"><i class="fa fa-chevron-circle-right"></i> <?php echo translator::trans("redirect.return"); ?></a>
+									<a href="<?php echo userpanel\url('settings/redirects'); ?>" class="btn btn-default"><i class="fa fa-chevron-circle-right"></i> <?php echo Translator::trans("redirect.return"); ?></a>
 								</div>
 								<div class="btn-group">
-									<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <?php echo translator::trans("redirect.add"); ?></button>
+									<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> <?php echo Translator::trans("redirect.add"); ?></button>
 								</div>
 							</div>
 						</div>

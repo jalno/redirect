@@ -1,8 +1,8 @@
 <?php
 namespace packages\redirect;
-use \packages\userpanel\authorization as UserPanelAuthorization;
-use \packages\userpanel\authentication;
-class authorization extends UserPanelAuthorization{
+use \packages\userpanel\Authorization as UserPanelAuthorization;
+use \packages\userpanel\Authentication;
+class Authorization extends UserPanelAuthorization{
 	static function is_accessed($permission, $prefix = 'redirect'){
 		return parent::is_accessed($permission, $prefix);
 	}

@@ -1,12 +1,12 @@
 <?php
-namespace packages\redirect\controllers;
+namespace packages\redirect\Controllers;
 
-use packages\base\{http, Controller};
+use packages\base\{HTTP, Controller};
 use packages\redirect\Address;
 
 class Redirect extends Controller {
 	public function redirector(){
-		$uri = http::getURL();
+		$uri = HTTP::getURL();
 		$address = new Address();
 		$address->where("status", Address::active);
 		foreach($address->get() as $address) {

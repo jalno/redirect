@@ -1,14 +1,14 @@
 <?php
 namespace packages\redirect;
-use \packages\base\json;
-use \packages\base\router;
-use \packages\base\router\rule;
-$address = new address();
-$address->where('status', address::active);
+use \packages\base\Json;
+use \packages\base\Router;
+use \packages\base\Router\Rule;
+$address = new Address();
+$address->where('status', Address::active);
 $addresses = [];
 foreach($address->get() as $address){
-	$rule = new rule();
-	$rule->setController(controllers\redirect::class, 'redirector');
+	$rule = new Rule();
+	$rule->setController(Controllers\Redirect::class, 'redirector');
 	if($address->isRegex()){
 		$rule->setRegex($address->source);
 	}else{
@@ -18,5 +18,5 @@ foreach($address->get() as $address){
 		$rule->setAbsolute(true);
 		$rule->setPath(substr($url['path'], 1));
 	}
-	router::addRule($rule);
+	Router::addRule($rule);
 }

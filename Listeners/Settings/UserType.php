@@ -1,7 +1,7 @@
 <?php
-namespace packages\redirect\listeners\settings;
-use \packages\userpanel\usertype\permissions;
-class usertype{
+namespace packages\redirect\Listeners\Settings;
+use \packages\userpanel\UserType\Permissions;
+class UserType{
 	public function permissions_list(){
 		$permissions = array(
 			'search',
@@ -10,7 +10,7 @@ class usertype{
 			'edit'
 		);
 		foreach($permissions as $permission){
-			permissions::add('redirect_'.$permission);
+			Permissions::add('redirect_'.$permission);
 		}
 	}
 }

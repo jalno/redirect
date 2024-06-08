@@ -1,46 +1,46 @@
 <?php
-namespace themes\clipone\views\redirect\address;
-use \packages\base\translator;
+namespace themes\clipone\Views\Redirect\Address;
+use \packages\base\Translator;
 use \packages\userpanel;
-use \packages\redirect\address;
-use \themes\clipone\viewTrait;
-use \themes\clipone\navigation;
-use \themes\clipone\views\formTrait;
-use \themes\clipone\navigation\menuItem;
-use \packages\redirect\views\address\edit as redirectEdit;
-class edit extends redirectEdit{
-	use viewTrait, formTrait;
+use \packages\redirect\Address;
+use \themes\clipone\ViewTrait;
+use \themes\clipone\Navigation;
+use \themes\clipone\Views\FormTrait;
+use \themes\clipone\Navigation\MenuItem;
+use \packages\redirect\Views\Address\Edit as RedirectEdit;
+class Edit extends RedirectEdit{
+	use ViewTrait, FormTrait;
 	protected $address;
 	function __beforeLoad(){
 		$this->address = $this->getAddress();
 		$this->setTitle([
-			translator::trans('redirect.settings'),
-			translator::trans('redirects'),
-			translator::trans('redirect.address.edit')
+			Translator::trans('redirect.settings'),
+			Translator::trans('redirects'),
+			Translator::trans('redirect.address.edit')
 		]);
-		navigation::active("settings/redirects");
+		Navigation::active("settings/redirects");
 	}
 	protected function getStatusForSelect():array{
 		return [
 			[
-				'title' => translator::trans("redirect.address.status.active"),
-				'value' => address::active
+				'title' => Translator::trans("redirect.address.status.active"),
+				'value' => Address::active
 			],
 			[
-				'title' => translator::trans("redirect.address.status.deactive"),
-				'value' => address::deactive
+				'title' => Translator::trans("redirect.address.status.deactive"),
+				'value' => Address::deactive
 			]
 		];
 	}
 	protected function getTypeForSelect():array{
 		return [
 			[
-				'title' => translator::trans("redirect.address.status.permanent"),
-				'value' => address::permanent
+				'title' => Translator::trans("redirect.address.status.permanent"),
+				'value' => Address::permanent
 			],
 			[
-				'title' => translator::trans("redirect.address.status.temporary"),
-				'value' => address::temporary
+				'title' => Translator::trans("redirect.address.status.temporary"),
+				'value' => Address::temporary
 			]
 		];
 	}
@@ -53,7 +53,7 @@ class edit extends redirectEdit{
 					'type' => 'button',
 					'class' => ['btn', 'btn-default', 'sourceType'],
 					'icon' => $regexr ? 'fa fa-text-width' : 'fa fa-link',
-					'text' => translator::trans($text),
+					'text' => Translator::trans($text),
 					'data' => [
 						'type' => $regexr ? 'regex' : 'link'
 					],
@@ -66,7 +66,7 @@ class edit extends redirectEdit{
 								'field' => 'source',
 								'type' => 'link'
 							],
-							'title' => translator::trans('redirect.address.source.link')
+							'title' => Translator::trans('redirect.address.source.link')
 						],
 						[
 							'icon' => 'fa fa-text-width',
@@ -76,7 +76,7 @@ class edit extends redirectEdit{
 								'field' => 'source',
 								'type' => 'regex'
 							],
-							'title' => translator::trans('redirect.address.source.regex')
+							'title' => Translator::trans('redirect.address.source.regex')
 						]
 					]
 				]
