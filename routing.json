@@ -1,37 +1,37 @@
 [
 	{
-		"path": ["userpanel", "settings", "redirects"],
-		"controller": "controllers\\addresses@search",
+		"path": "userpanel/settings/redirects",
+		"controller": "packges/redirect/Controllers/Addresses@search",
 		"method": "get"
 	},
 	{
-		"path": ["userpanel", "settings", "redirects", "add"],
-		"controller": "controllers\\addresses@add",
+		"path": "userpanel/settings/redirects/add",
+		"controller": "packges/redirect/Controllers/Addresses@add",
 		"method": "get"
 	},
 	{
-		"path": ["userpanel", "settings", "redirects", "add"],
-		"controller": "controllers\\addresses@store",
+		"path": "userpanel/settings/redirects/add",
+		"controller": "packges/redirect/Controllers/Addresses@store",
 		"method": "post"
 	},
 	{
 		"path": ["userpanel", "settings", "redirects", "edit", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\addresses@edit",
+		"controller": "packges/redirect/Controllers/Addresses@edit",
 		"method": "get"
 	},
 	{
 		"path": ["userpanel", "settings", "redirects", "edit", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\addresses@update",
+		"controller": "packges/redirect/Controllers/Addresses@update",
 		"method": "post"
 	},
 	{
 		"path": ["userpanel", "settings", "redirects", "delete", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\addresses@delete",
+		"controller": "packges/redirect/Controllers/Addresses@delete",
 		"method": "get"
 	},
 	{
 		"path": ["userpanel", "settings", "redirects", "delete", {"type":"dynamic", "name":"address", "regex":"/^(\\d+)$/"}],
-		"controller": "controllers\\addresses@terminate",
+		"controller": "packges/redirect/Controllers/Addresses@terminate",
 		"method": "post"
 	}
 ]
