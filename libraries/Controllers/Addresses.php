@@ -12,7 +12,7 @@ use packages\redirect\Address;
 use packages\redirect\Authorization;
 use packages\redirect\Controller;
 use packages\redirect\View;
-use packages\redirect\Views\Address as AddressView;
+use themes\clipone\Views\Redirect\Address as AddressViews;
 use packages\userpanel;
 
 class Addresses extends Controller
@@ -22,7 +22,7 @@ class Addresses extends Controller
     public function search()
     {
         Authorization::haveOrFail('search');
-        $view = View::byName(AddressView\Search::class);
+        $view = View::byName(AddressViews\Search::class);
         $address = new Address();
         $inputsRules = [
             'id' => [
@@ -107,7 +107,7 @@ class Addresses extends Controller
     public function add()
     {
         Authorization::haveOrFail('add');
-        $view = View::byName(AddressView\Add::class);
+        $view = View::byName(AddressViews\Add::class);
         $view->setDataForm(false, 'regexr');
         $this->response->setStatus(true);
         $this->response->setView($view);
@@ -118,7 +118,7 @@ class Addresses extends Controller
     public function store()
     {
         Authorization::haveOrFail('add');
-        $view = View::byName(AddressView\Add::class);
+        $view = View::byName(AddressViews\Add::class);
         $inputsRules = [
             'source' => [
             ],
@@ -183,7 +183,7 @@ class Addresses extends Controller
         if (!$address = Address::byId($data['address'])) {
             throw new NotFound();
         }
-        $view = View::byName(AddressView\Edit::class);
+        $view = View::byName(AddressViews\Edit::class);
         $view->setAddress($address);
         $view->setDataForm($address->isRegex(), 'regexr');
         $this->response->setStatus(true);
@@ -198,7 +198,7 @@ class Addresses extends Controller
         if (!$address = Address::byId($data['address'])) {
             throw new NotFound();
         }
-        $view = View::byName(AddressView\Edit::class);
+        $view = View::byName(AddressViews\Edit::class);
         $view->setAddress($address);
         $inputsRules = [
             'source' => [
@@ -283,7 +283,7 @@ class Addresses extends Controller
         if (!$address = Address::byId($data['address'])) {
             throw new NotFound();
         }
-        $view = View::byName(AddressView\Delete::class);
+        $view = View::byName(AddressViews\Delete::class);
         $view->setAddress($address);
         $this->response->setStatus(true);
         $this->response->setView($view);
@@ -297,7 +297,7 @@ class Addresses extends Controller
         if (!$address = Address::byId($data['address'])) {
             throw new NotFound();
         }
-        $view = View::byName(AddressView\Delete::class);
+        $view = View::byName(AddressViews\Delete::class);
         $address->delete();
         $this->response->setStatus(true);
         $this->response->Go(userpanel\url('settings/redirects'));
