@@ -1,4 +1,3 @@
-import * as $ from "jquery";
 import "jquery.growl";
 import "bootstrap-inputmsg";
 import { webuilder } from "webuilder";
